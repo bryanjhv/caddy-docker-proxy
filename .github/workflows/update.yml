@@ -1,0 +1,47 @@
+name: Update
+on:
+  push:
+    paths:
+      - modules.conf
+  schedule:
+    - cron: 0 5 * * *
+  workflow_dispatch:
+    inputs:
+      force:
+        type: boolean
+        default: false
+jobs:
+  update:
+    name: Check for updates
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, 'chore: bump version')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GH_PAT }}
+      - name: Run update script
+        id: script
+        run: |
+          flags=()
+          [[ "${{ inputs.force }}" == "true" ]] && flags+=("--force")
+          bash update.sh "${flags[@]}"
+      - name: Set up Docker Buildx
+        if: steps.script.outputs.updated == 'true'
+        uses: docker/setup-buildx-action@v4
+      - name: Verify Docker build
+        if: steps.script.outputs.updated == 'true'
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Commit and push changes
+        if: steps.script.outputs.updated == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add modules.conf Dockerfile CHANGELOG.md
+          git commit -m "chore: bump version to ${{ steps.script.outputs.tag }}"
+          git tag -a "${{ steps.script.outputs.tag }}" -m ""
+          git push --follow-tags
