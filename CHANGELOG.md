@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- releases -->
 
+## 2.11.3-alpine-r.1 - 2026-05-15
+
+### Changed
+
+- github.com/mholt/caddy-l4 v0.1.0 to v0.1.1
+
 ## 2.11.3-alpine-r.0 - 2026-05-13
 
 ### Changed
