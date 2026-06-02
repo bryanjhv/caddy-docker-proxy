@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- releases -->
 
+## 2.11.3-alpine-r.2 - 2026-06-02
+
+### Changed
+
+- github.com/lucaslorentz/caddy-docker-proxy/v2 v2.12.0 to v2.12.1
+
 ## 2.11.3-alpine-r.1 - 2026-05-15
 
 ### Changed
