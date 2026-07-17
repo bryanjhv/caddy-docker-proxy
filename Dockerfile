@@ -9,7 +9,7 @@ xcaddy build \
 --with github.com/lucaslorentz/caddy-docker-proxy/v2@v2.13.1 \
 --with github.com/greenpau/caddy-security@v1.1.64 \
 --with github.com/caddy-dns/cloudflare@v0.2.4 \
---with github.com/mholt/caddy-l4@v0.1.1
+--with github.com/mholt/caddy-l4@v0.1.2
 
 FROM caddy:2.11.4-alpine
 
