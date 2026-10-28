@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- releases -->
 
+## 2.11.7-alpine-r.2 - 2026-10-28
+
+### Changed
+
+- github.com/greenpau/caddy-security v1.5.0 to v1.6.2
+
 ## 2.11.7-alpine-r.1 - 2026-10-27
 
 ### Changed
